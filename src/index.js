@@ -5,3 +5,8 @@
  function jsonToJS(r){
   return r.json()
  }
+
+
+
+
+ loadRoom()

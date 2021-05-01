@@ -28,3 +28,20 @@ body{
   margin: 5px;
 }
 
+#LeftContainer{
+  width: 50%;
+  float: left;
+}
+
+#RightContainer{
+  width: 50%;
+  height: 75%;
+  /* background-color: black; */
+  float: left;
+}
+
+.block{
+  height: 30px;
+  background-color: black;
+  width: 30px;
+}
