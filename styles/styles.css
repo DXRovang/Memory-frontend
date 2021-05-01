@@ -4,22 +4,27 @@ body{
 
 #Title{
   background-color: hotpink;
-  width: 140px;
+ float: left;
+ clear: both;
   padding: 5px;
   margin: 5px;
 }
 
-#Locis{
+.loci{
   float:left;
+  clear: left;
   background-color: orange;
   list-style-type: none;
+  width: 100px;
   padding: 5px;
   margin: 5px;
 }
-#Item{
+.item{
   float:left;
+  width: 100px;
   background-color: greenyellow;
   list-style-type: none;
   padding: 5px;
   margin: 5px;
 }
+
