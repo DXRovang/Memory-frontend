@@ -10,17 +10,32 @@ function fetchPalaces(){
 function appendPalaces(palaces){
   const palaceDiv = document.getElementById("Title")
   const lociDiv = document.getElementById("Locis")
-  const itemDiv = document.getElementById("Item")
-
   for (let palace of palaces){
     palaceDiv.innerHTML = palace.name
     for(let i = 0; i < palace.locis.length; i++){
       const li = document.createElement("li")
-      const le = document.createElement("li")
       li.innerHTML = palace.locis[i].name
-      le.innerHTML = palace.locis[i].item
-      lociDiv.append(li)
-      itemDiv.append(le)
+      lociDiv.append(li)  
     }
   }
+  appendItem(palaces)
 }
+
+// option 2 - less code but no separation
+// function appendPalaces(palaces){
+//   const palaceDiv = document.getElementById("Title")
+//   const lociDiv = document.getElementById("Locis")
+//   const itemDiv = document.getElementById("Item")
+
+//   for (let palace of palaces){
+//     palaceDiv.innerHTML = palace.name
+//     for(let i = 0; i < palace.locis.length; i++){
+//       const li = document.createElement("li")
+//       const le = document.createElement("li")
+//       li.innerHTML = palace.locis[i].name
+//       le.innerHTML = palace.locis[i].item
+//       lociDiv.append(li)
+//       itemDiv.append(le) 
+//     } 
+//   }
+// }
