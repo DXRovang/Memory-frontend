@@ -1,0 +1,21 @@
+#Title{
+  background-color: hotpink;
+  width: 140px;
+  padding: 5px;
+  margin: 5px;
+}
+
+#Locis{
+  float:left;
+  background-color: orange;
+  list-style-type: none;
+  padding: 5px;
+  margin: 5px;
+}
+#Item{
+  float:left;
+  background-color: greenyellow;
+  list-style-type: none;
+  padding: 5px;
+  margin: 5px;
+}
