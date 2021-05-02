@@ -1,5 +1,5 @@
 body{
-  background-color: khaki;
+  background-color: rgb(201, 165, 120);
 }
 
 #Title{
@@ -44,4 +44,10 @@ body{
   height: 30px;
   background-color: black;
   width: 30px;
+}
+.firstColor{
+  background-color: black;
+}
+.secondColor{
+  background-color: grey;
 }

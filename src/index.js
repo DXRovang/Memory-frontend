@@ -6,7 +6,4 @@
   return r.json()
  }
 
-
-
-
  loadRoom()
