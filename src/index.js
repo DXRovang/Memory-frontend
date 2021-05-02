@@ -1,6 +1,6 @@
  PalaceForm.addEventListener('submit', postPalace)
 
- fetchPalaces()
+ Palace.fetchPalaces()
  loadRoom()
 
  function jsonToJS(r){

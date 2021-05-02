@@ -46,24 +46,27 @@ class Palace{
     }
   }
 
-}
-
-
-function fetchPalaces(){
-  fetch("http://localhost:3000/palaces")
-  // converts response from from json into js, no return necessary if no curly brackets
-  .then(jsonToJS)
-  // since we define this function below, we can just ref it
-  .then(appendPalaces)
-}
-// find a DOM element and attach to it
-function appendPalaces(palaces){
-  for (let palace of palaces){
-    // need to create a frontend obj
-    let newPalace = new Palace(palace)
-    newPalace.appendPalace()
+  // static are related to class methods in ruby
+  static fetchPalaces(){
+    fetch("http://localhost:3000/palaces")
+    // converts response from from json into js, no return necessary if no curly brackets
+    .then(jsonToJS)
+    // since we define this function below, we can just ref it
+    .then(this.appendPalaces)
   }
+  // find a DOM element and attach to it
+  static appendPalaces(palaces){
+    for (let palace of palaces){
+      // need to create a frontend obj
+      let newPalace = new Palace(palace)
+      newPalace.appendPalace()
+    }
+  }
+
 }
+
+
+
 
 function deleteLi(palaceId, li){
   // debugger
