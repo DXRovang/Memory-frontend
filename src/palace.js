@@ -7,9 +7,46 @@ class Palace{
     this.id = palace.id
     this.locis = palace.locis
   }
+  // adds a single palace > try & split this into append loci & item
+  appendPalace(){
+    const palaceDiv = document.getElementById("Title")
+    const ul = document.createElement("ul")
+    ul.innerHTML = this.name
+    palaceDiv.append(ul)
+
+    for(let i = 0; i < this.locis.length; i++){
+      const li = document.createElement("li")
+      const le = document.createElement("li")
+
+      li.setAttribute("class", "loci")
+      le.setAttribute("class", "item")
+  
+      li.innerHTML = this.locis[i].name
+      palaceDiv.append(li)
+      le.innerHTML = this.locis[i].item
+      palaceDiv.append(le) 
+
+      const bi = document.createElement("br")
+      const be = document.createElement("br")
+
+      const liDelete = document.createElement("button")
+      liDelete.innerText = "Delete"
+      // got lost here, CRD functionality 14:59
+      liDelete.addEventListener("click", function(e){
+        deleteLi(this.id, li)})
+      li.append(bi)
+      li.append(liDelete)
+
+      const leDelete = document.createElement("button")
+      leDelete.innerText = "Delete"
+      leDelete.addEventListener("click", function(e){
+        deleteLe(this.id, le)})
+      le.append(be)
+      le.append(leDelete)
+    }
+  }
+
 }
-
-
 
 
 function fetchPalaces(){
@@ -22,49 +59,12 @@ function fetchPalaces(){
 // find a DOM element and attach to it
 function appendPalaces(palaces){
   for (let palace of palaces){
-    appendPalace(palace)
+    // need to create a frontend obj
+    let newPalace = new Palace(palace)
+    newPalace.appendPalace()
   }
 }
-// adds a single palace > try & split this into append loci & item
-function appendPalace(palace){
-  const palaceDiv = document.getElementById("Title")
-  const ul = document.createElement("ul")
-  ul.innerHTML = palace.name
-  palaceDiv.append(ul)
 
-  for(let i = 0; i < palace.locis.length; i++){
-    const li = document.createElement("li")
-    const le = document.createElement("li")
-
-    li.setAttribute("class", "loci")
-    le.setAttribute("class", "item")
- 
-    li.innerHTML = palace.locis[i].name
-    palaceDiv.append(li)
-    le.innerHTML = palace.locis[i].item
-    palaceDiv.append(le) 
-
-    const bi = document.createElement("br")
-    const be = document.createElement("br")
-
-    const liDelete = document.createElement("button")
-    liDelete.innerText = "Delete"
-    // got lost here, CRD functionality 14:59
-    liDelete.addEventListener("click", function(e){
-      deleteLi(palace.id, li)})
-    li.append(bi)
-    li.append(liDelete)
-
-    const leDelete = document.createElement("button")
-    leDelete.innerText = "Delete"
-    leDelete.addEventListener("click", function(e){
-      // debugger
-      deleteLe(palace.id, le)})
-    le.append(be)
-    le.append(leDelete)
-    
-  }
-}
 function deleteLi(palaceId, li){
   // debugger
   fetch(`http://localhost:3000/locis/${palaceId}`, {method: "DELETE"})
@@ -79,21 +79,21 @@ function deleteLe(lociId, le){
 // VERY tricky, look at this!!!
 function postPalace(e){
   e.preventDefault()
-  const userInput = e.target.children[1].value
+  const userInput = e.target.children[2].value
   const options = {
     method: "POST", 
     headers: {
       "Content-type": "application/json",
-      Accept: "application/json"
+      "Accept": "application/json"
     },
     body: JSON.stringify({palace: {name: userInput}})
     }
     e.target.reset()
     fetch("http://localhost:3000/palaces", options)
     .then(jsonToJS)
-    .then(palace => {
-      new Palace
-      appendPalace(palace)
+    .then(palace => function(){
+      let newPalace = new Palace
+      newPalace.appendPalace()
     })
   }
 
