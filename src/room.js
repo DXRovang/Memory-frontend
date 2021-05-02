@@ -8,6 +8,7 @@ function loadRoom(){
     for(let i = 0; i < 20; i++){
       const td = document.createElement("td")
       td.setAttribute("class", "block firstColor")
+      // look this up!!!!
       td.setAttribute("onclick", "changeColor(this)")
       td.innerHTML = ""
       tr.append(td)
@@ -15,6 +16,7 @@ function loadRoom(){
    }
   }
 
+// look this up!!!!
 function changeColor(tdObj){
   tdObj.classList.toggle("secondColor")
 }

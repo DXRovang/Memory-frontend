@@ -29,15 +29,14 @@ body{
 }
 
 #LeftContainer{
-  width: 50%;
+  width: 35%;
   float: left;
 }
 
 #RightContainer{
-  width: 50%;
+  width: 65%;
   height: 75%;
-  /* background-color: black; */
-  float: left;
+  float: right;
 }
 
 .block{
