@@ -11,17 +11,21 @@ class Palace{
   appendPalace(){
     const palaceDiv = document.getElementById("Title")
     const ul = document.createElement("ul")
+    
+    // separate this out into an appendButton function
+    // unfortunately it can't move from this spot
     const button = document.createElement("button")
     const br = document.createElement("br")
     button.innerHTML = "Add Loci"
-    button.addEventListener("click", function(e){
-      console.log('hello there, neighbor!')})
+    button.addEventListener("click", (e) => renderShow(this))
 
     ul.innerHTML = this.name
     ul.append(br)
     ul.append(button)
     palaceDiv.append(ul)
     appendLocis(this, palaceDiv)
+
+    
   }
 
   // static are like class methods in ruby
@@ -41,6 +45,23 @@ class Palace{
     }
   }
 }
+
+function renderShow(palace){
+  const page = document.getElementById("Palace")
+  const title = document.getElementById("Title")
+  title.innerHTML = ""
+  page.children[0].remove()
+  // debugger
+  // Palace.appendPalace()
+  const palaceDiv = document.getElementById("Title")
+  const ul = document.createElement("ul")
+
+  ul.innerHTML = palace.name
+  palaceDiv.append(ul)
+  appendLocis(palace, palaceDiv)
+  
+}
+
 
 function deleteLi(palaceId, li){
   // debugger
