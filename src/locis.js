@@ -6,7 +6,6 @@ class Loci{
   }
 }
 
-
 function appendLocis(palace, palaceDiv){
   for(let i = 0; i < palace.locis.length; i++){
     const li = document.createElement("li")
@@ -14,16 +13,21 @@ function appendLocis(palace, palaceDiv){
 
     li.setAttribute("class", "loci")
     le.setAttribute("class", "item")
-
     li.innerHTML = palace.locis[i].name
     palaceDiv.append(li)
     le.innerHTML = palace.locis[i].item
     palaceDiv.append(le) 
 
+    deleteLi(palace, li, le)
+  }
+}
+
+function deleteLi(palace, li, le){
     const bi = document.createElement("br")
     const be = document.createElement("br")
-
     const liDelete = document.createElement("button")
+    const leDelete = document.createElement("button")
+    
     liDelete.innerText = "Delete"
     // got lost here, CRD functionality 14:59
     liDelete.addEventListener("click", function(e){
@@ -31,11 +35,9 @@ function appendLocis(palace, palaceDiv){
     li.append(bi)
     li.append(liDelete)
 
-    const leDelete = document.createElement("button")
     leDelete.innerText = "Delete"
     leDelete.addEventListener("click", function(e){
       deleteLe(palace.id, le)})
     le.append(be)
     le.append(leDelete)
-  }
 }
