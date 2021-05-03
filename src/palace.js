@@ -14,6 +14,9 @@ class Palace{
     const button = document.createElement("button")
     const br = document.createElement("br")
     button.innerHTML = "Add Loci"
+    button.addEventListener("click", function(e){
+      console.log('hello there, neighbor!')})
+
     ul.innerHTML = this.name
     ul.append(br)
     ul.append(button)
