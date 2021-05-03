@@ -1,3 +1,12 @@
+class Loci{
+  constructor(loci){
+    this.name = loci.name
+    this.id = loci.id
+    this.item = loci.item
+  }
+}
+
+
 function appendLocis(palace, palaceDiv){
   for(let i = 0; i < palace.locis.length; i++){
     const li = document.createElement("li")
