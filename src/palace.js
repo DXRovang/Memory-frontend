@@ -11,9 +11,13 @@ class Palace{
   appendPalace(){
     const palaceDiv = document.getElementById("Title")
     const ul = document.createElement("ul")
+    const button = document.createElement("button")
+    const br = document.createElement("br")
+    button.innerHTML = "Add Loci"
     ul.innerHTML = this.name
+    ul.append(br)
+    ul.append(button)
     palaceDiv.append(ul)
-
     appendLocis(this, palaceDiv)
   }
 
