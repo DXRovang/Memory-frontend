@@ -16,16 +16,13 @@ class Palace{
     // unfortunately it can't move from this spot
     const button = document.createElement("button")
     const br = document.createElement("br")
-    button.innerHTML = "Add Loci"
+    button.innerHTML = "See Me"
     button.addEventListener("click", (e) => renderShow(this))
 
     ul.innerHTML = this.name
-    ul.append(br)
-    ul.append(button)
+    ul.append(br, button)
     palaceDiv.append(ul)
     appendLocis(this, palaceDiv)
-
-    
   }
 
   // static are like class methods in ruby
@@ -59,21 +56,9 @@ function renderShow(palace){
   ul.innerHTML = palace.name
   palaceDiv.append(ul)
   appendLocis(palace, palaceDiv)
-  
+  appendLocisForm()
 }
 
-
-function deleteLi(palaceId, li){
-  // debugger
-  fetch(`http://localhost:3000/locis/${palaceId}`, {method: "DELETE"})
-  .then(jsonToJS)
-  .then(m => li.remove())
-}
-function deleteLe(lociId, le){
-  fetch(`http://localhost:3000/locis/${palaceId}`, {method: "DELETE"})
-  .then(jsonToJS)
-  .then(m => le.remove())
-}
 // VERY tricky, look at this!!!
 function postPalace(e){
   e.preventDefault()
@@ -84,7 +69,11 @@ function postPalace(e){
       "Content-type": "application/json",
       "Accept": "application/json"
     },
-    body: JSON.stringify({palace: {name: userInput}})
+    body: JSON.stringify({
+      palace: {
+        name: userInput
+      }
+    })
     }
     e.target.reset()
     fetch("http://localhost:3000/palaces", options)
