@@ -13,15 +13,21 @@ class Loci{
   }
 }
 
+function deleteLoci(){
+  
+}
+
 function appendLocis(palace, palaceDiv){
   for(let i = 0; i < palace.locis.length; i++){
     const li = document.createElement("li")
     li.setAttribute("class", "loci")
     li.innerHTML = palace.locis[i].name
+    const button = document.createElement("button")
+    button.innerHTML = "x"
+    button.setAttribute("class", "btn1 delete")
+    li.append(button)
     palaceDiv.append(li)
     appendItem(i, palace, palaceDiv)
-
-    // lociItemDelete(palace, li, le)
   }
 }
 
@@ -29,7 +35,20 @@ function appendItem(i, palace, palaceDiv){
   const li = document.createElement("li")
   li.setAttribute("class", "item")
   li.innerHTML = palace.locis[i].item
+
+  const button = document.createElement("button")
+  button.innerHTML = "x"
+  button.setAttribute("class", "btn delete")
+  const loci = palace.locis[i]
+  button.addEventListener("click", (e) => {
+    deleteItem(loci, e)})
+  li.append(button)
   palaceDiv.append(li) 
+}
+
+
+function deleteItem(loci, e){
+
 }
 
 function appendLocisForm(){
@@ -51,9 +70,7 @@ function appendLocisForm(){
 }
 
 function addLoci(e){
-  // debugger
   e.preventDefault()
-  // debugger
   const userInput = e.target.children[1].value
   const itemInput = e.target.children[4].value
   const palaceName = document.getElementsByTagName('ul')[0].innerText
@@ -81,39 +98,3 @@ function addLoci(e){
     })
 }
 
-
-function deleteLoci(palaceId, li){
-  // debugger
-  fetch(`http://localhost:3000/locis/${palaceId}`, {method: "DELETE"})
-  .then(jsonToJS)
-  .then(m => li.remove())
-}
-function deleteItem(palaceId, le){
-  // debugger
-  fetch(`http://localhost:3000/locis/${palaceId}`, {method: "DELETE"})
-  .then(jsonToJS)
-  .then(m => le.remove())
-}
-
-function lociItemDelete(palace, li, le){
-  const bi = document.createElement("br")
-  li.append(bi)
-    // for deleting a loci
-    const liDelete = document.createElement("button")
-    liDelete.innerText = "DeleteLoci"
-    // got lost here, CRD functionality 14:59
-    liDelete.addEventListener("click", function(e){
-      deleteLoci(palace.id, li)})
-    li.append(liDelete)
-
-    // for deleting an item, I think
-  const be = document.createElement("br")
-  le.append(be)
-  
-    const leDelete = document.createElement("button")
-    leDelete.innerText = "DeleteItem"
-    leDelete.addEventListener("click", function(e){
-      deleteItem(palace.id, le)})
-    le.append(leDelete)
-    // debugger
-}
