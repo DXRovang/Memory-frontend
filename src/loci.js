@@ -13,9 +13,6 @@ class Loci{
   }
 }
 
-function deleteLoci(){
-  
-}
 
 function appendLocis(palace, palaceDiv){
   for(let i = 0; i < palace.locis.length; i++){
@@ -26,9 +23,17 @@ function appendLocis(palace, palaceDiv){
     button.innerHTML = "x"
     button.setAttribute("class", "btn1 delete")
     li.append(button)
+    const loci = palace.locis[i]
+    button.addEventListener("click", (e) => {
+      deleteLoci(loci)
+    })
     palaceDiv.append(li)
     appendItem(i, palace, palaceDiv)
   }
+}
+
+function deleteLoci(loci){
+  fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})
 }
 
 function appendItem(i, palace, palaceDiv){
