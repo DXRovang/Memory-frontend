@@ -9,6 +9,10 @@ body{
   padding: 5px;
   margin: 5px;
   text-align: right;
+  width: 240px;
+  border: solid;
+  border-width: 2px;
+  border-color: lightskyblue;
 }
 
 .loci{
