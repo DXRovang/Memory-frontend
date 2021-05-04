@@ -79,7 +79,7 @@ function postPalace(e){
     fetch("http://localhost:3000/palaces", options)
     .then(jsonToJS)
     .then(palace => function(){
-      let newPalace = new Palace
+      let newPalace = new Palace(palace)
       newPalace.appendPalace()
     })
   }
