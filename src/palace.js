@@ -79,15 +79,15 @@ function renderShow(palace){
   const palaceDiv = document.getElementById("Title")
   const ul = document.createElement("ul")
 
-  const button = document.createElement("button")
-  const br = document.createElement("br")
-  button.innerHTML = "go back"
-  // not working
+  // const button = document.createElement("button")
+  // const br = document.createElement("br")
+  // button.innerHTML = "go back"
+  // not working, also don't attach to Palace Name
   // button.addEventListener("click", (e) => console.log("hello"))
 
   ul.innerHTML = palace.name
-  ul.append(br)
-  ul.append(button)
+  // ul.append(br)
+  // ul.append(button)
   palaceDiv.append(ul)
   Loci.appendLocis(palace, palaceDiv)
   appendLocisForm()

@@ -65,7 +65,6 @@ function addItem(loci, palace, itemInput){
 
 
 function deleteItem(e, loci, palace){
-  debugger
   e.preventDefault()
   const options = {
     method: "PATCH", 
