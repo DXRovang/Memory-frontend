@@ -9,28 +9,47 @@ class Loci{
     const ul = document.getElementsByTagName('ul')
     const li = document.createElement("li")
     li.innerHTML = this.name
-    ul.append(li)
-    
+    ul.append(li) 
   }
+  static appendLocis(palace, palaceDiv){
+    for(let i = 0; i < palace.locis.length; i++){
+      const li = document.createElement("li")
+      li.setAttribute("class", "loci")
+      li.innerHTML = palace.locis[i].name
+      const button = document.createElement("button")
+      button.innerHTML = "x"
+      button.setAttribute("class", "btn1 delete")
+      li.append(button)
+      const loci = palace.locis[i]
+      button.addEventListener("click", (e) => {
+        deleteLoci(loci)
+      })
+      palaceDiv.append(li)
+      appendItem(i, palace, palaceDiv)
+    }
+  }
+  // ADD METHOD HERE
 }
 
-function appendLocis(palace, palaceDiv){
-  for(let i = 0; i < palace.locis.length; i++){
-    const li = document.createElement("li")
-    li.setAttribute("class", "loci")
-    li.innerHTML = palace.locis[i].name
-    const button = document.createElement("button")
-    button.innerHTML = "x"
-    button.setAttribute("class", "btn1 delete")
-    li.append(button)
-    const loci = palace.locis[i]
-    button.addEventListener("click", (e) => {
-      deleteLoci(loci)
-    })
-    palaceDiv.append(li)
-    appendItem(i, palace, palaceDiv)
-  }
-}
+// EVERYTHING ABOVE HERE IS CLASS
+
+// function appendLocis(palace, palaceDiv){
+//   for(let i = 0; i < palace.locis.length; i++){
+//     const li = document.createElement("li")
+//     li.setAttribute("class", "loci")
+//     li.innerHTML = palace.locis[i].name
+//     const button = document.createElement("button")
+//     button.innerHTML = "x"
+//     button.setAttribute("class", "btn1 delete")
+//     li.append(button)
+//     const loci = palace.locis[i]
+//     button.addEventListener("click", (e) => {
+//       deleteLoci(loci)
+//     })
+//     palaceDiv.append(li)
+//     appendItem(i, palace, palaceDiv)
+//   }
+// }
 
 function deleteLoci(loci){
   fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})

@@ -20,7 +20,7 @@ class Palace{
     ul.innerHTML = this.name
     ul.append(br, button)
     palaceDiv.append(ul)
-    appendLocis(this, palaceDiv)
+    Loci.appendLocis(this, palaceDiv)
   }
   // static are like class methods in ruby
   static fetchPalaces(){
@@ -64,6 +64,7 @@ class Palace{
         // add catch?
       })
     }
+
   // ADD NEW METHOD HERE
 }
 
@@ -88,7 +89,7 @@ function renderShow(palace){
   ul.append(br)
   ul.append(button)
   palaceDiv.append(ul)
-  appendLocis(palace, palaceDiv)
+  Loci.appendLocis(palace, palaceDiv)
   appendLocisForm()
 }
 
