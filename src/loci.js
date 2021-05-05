@@ -10,6 +10,7 @@ class Loci{
     const li = document.createElement("li")
     li.innerHTML = this.name
     ul.append(li)
+    
   }
 }
 
@@ -75,7 +76,7 @@ function addLoci(e){
     e.target.reset()
     fetch('http://localhost:3000/locis', options)
     .then(jsonToJS)
-    .then(loci => function(){
+    .then(loci => {
       let newLoci = new Loci(loci)
       newLoci.appendLoci()
       // Palace.fetchPalaces()

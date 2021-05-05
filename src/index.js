@@ -1,11 +1,9 @@
-
- PalaceForm.addEventListener('submit', postPalace)
-
  Palace.fetchPalaces()
  loadRoom()
-
+ PalaceForm.addEventListener('submit', (e) => {
+  Palace.postPalace(e)
+ })
  function jsonToJS(r){
-   debugger
   return r.json()
  }
 

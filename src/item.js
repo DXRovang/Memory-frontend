@@ -15,7 +15,7 @@ function appendItem(i, palace, palaceDiv){
     button.innerHTML = "-"
     button.setAttribute("class", "btn delete")
     button.addEventListener("click", (e) => {
-      deleteItem(loci, palace)})
+      deleteItem(e, loci, palace)})
   }
   const loci = palace.locis[i]
   li.append(button)
@@ -64,7 +64,9 @@ function addItem(loci, palace, itemInput){
 }
 
 
-function deleteItem(loci, palace){
+function deleteItem(e, loci, palace){
+  debugger
+  e.preventDefault()
   const options = {
     method: "PATCH", 
     headers: {
@@ -80,4 +82,9 @@ function deleteItem(loci, palace){
       })
     }
   fetch(`http://localhost:3000/locis/${loci.id}`, options)
+  .then(jsonToJS)
+  .then(loci =>{
+    // debugger
+    
+  })
   }

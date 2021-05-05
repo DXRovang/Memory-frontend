@@ -1,13 +1,11 @@
 const PalaceForm = document.getElementById("PalaceForm")
 
 class Palace{
-
   constructor(palace){
     this.name = palace.name
     this.id = palace.id
     this.locis = palace.locis
   }
-
   appendPalace(){
     const palaceDiv = document.getElementById("Title")
     const ul = document.createElement("ul")
@@ -23,9 +21,7 @@ class Palace{
     ul.append(br, button)
     palaceDiv.append(ul)
     appendLocis(this, palaceDiv)
-   
   }
-
   // static are like class methods in ruby
   static fetchPalaces(){
     fetch('http://localhost:3000/palaces')
@@ -42,7 +38,36 @@ class Palace{
       newPalace.appendPalace()
     }
   }
+  static postPalace(e){
+    // debugger
+    e.preventDefault()
+    // why didn't e.target.children[1].value work here?
+    const userInput = document.getElementById("palaceName").value
+    const options = {
+      method: "POST", 
+      headers: {
+        "Content-type": "application/json", 
+        "Accept": "application/json"
+        },
+      body: JSON.stringify({
+            palace: {
+              name: userInput
+            }
+          })
+        }
+      e.target.reset()
+      fetch('http://localhost:3000/palaces', options)
+      .then(jsonToJS)
+      .then(palace => {
+        let newPalace = new Palace(palace)
+        newPalace.appendPalace()
+        // add catch?
+      })
+    }
+  // ADD NEW METHOD HERE
 }
+
+// EVERYTHING ABOVE HERE IS PALACE CLASS
 
 function renderShow(palace){
   const page = document.getElementById("Palace")
@@ -53,38 +78,19 @@ function renderShow(palace){
   const palaceDiv = document.getElementById("Title")
   const ul = document.createElement("ul")
 
+  const button = document.createElement("button")
+  const br = document.createElement("br")
+  button.innerHTML = "go back"
+  // not working
+  // button.addEventListener("click", (e) => console.log("hello"))
+
   ul.innerHTML = palace.name
+  ul.append(br)
+  ul.append(button)
   palaceDiv.append(ul)
   appendLocis(palace, palaceDiv)
   appendLocisForm()
 }
 
 
-function postPalace(e){
-  e.preventDefault()
-  // why didn't e.target.children[1].value work here?
-  const userInput = document.getElementById("palaceName").value
-  const options = {
-    method: "POST", 
-    headers: {
-      "Content-type": "application/json", 
-      "Accept": "application/json"
-      },
-    body: JSON.stringify({
-          palace: {
-            name: userInput
-          }
-        })
-      }
-    e.target.reset()
-    fetch('http://localhost:3000/palaces', options)
-    .then(jsonToJS)
-    .then(palace => function(){
-      // never hits this!!!
-      debugger
-      let newPalace = new Palace(palace)
-      newPalace.appendPalace()
-      // add catch?
-    })
-  }
 
