@@ -40,9 +40,9 @@ function appendLocisForm(){
   const locisForm = `
   <div id="LociItem">
     <form id="locisForm">
-    <label>Loci</label>
+    <label class="lociLabel">Loci</label>
     <input id="lociInput"/><br>
-    <label>Item</label>
+    <label class="lociLabel">Item</label>
     <input id="itemInput"/><br>
     <input type="submit" value="add loci"/>
     </form>
@@ -73,7 +73,7 @@ function addLoci(e){
       })
     }
     e.target.reset()
-    fetch("http://localhost:3000/locis", options)
+    fetch('http://localhost:3000/locis', options)
     .then(jsonToJS)
     .then(loci => function(){
       let newLoci = new Loci(loci)

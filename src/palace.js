@@ -12,7 +12,7 @@ class Palace{
     const palaceDiv = document.getElementById("Title")
     const ul = document.createElement("ul")
     
-    // separate this out into an appendButton function
+    // separate this out into an appendButton function?
     // unfortunately it can't move from this spot
     const button = document.createElement("button")
     const br = document.createElement("br")
@@ -23,11 +23,12 @@ class Palace{
     ul.append(br, button)
     palaceDiv.append(ul)
     appendLocis(this, palaceDiv)
+   
   }
 
   // static are like class methods in ruby
   static fetchPalaces(){
-    fetch("http://localhost:3000/palaces")
+    fetch('http://localhost:3000/palaces')
     // converts response from from json into js, no return necessary if no curly brackets
     .then(jsonToJS)
     // since we define this function below, we can just ref it
@@ -48,8 +49,7 @@ function renderShow(palace){
   const title = document.getElementById("Title")
   title.innerHTML = ""
   page.children[0].remove()
-  // debugger
-  // Palace.appendPalace()
+
   const palaceDiv = document.getElementById("Title")
   const ul = document.createElement("ul")
 
@@ -59,28 +59,32 @@ function renderShow(palace){
   appendLocisForm()
 }
 
-// VERY tricky, look at this!!!
+
 function postPalace(e){
   e.preventDefault()
-  const userInput = e.target.children[2].value
+  // why didn't e.target.children[1].value work here?
+  const userInput = document.getElementById("palaceName").value
   const options = {
     method: "POST", 
     headers: {
-      "Content-type": "application/json",
+      "Content-type": "application/json", 
       "Accept": "application/json"
-    },
+      },
     body: JSON.stringify({
-      palace: {
-        name: userInput
+          palace: {
+            name: userInput
+          }
+        })
       }
-    })
-    }
     e.target.reset()
-    fetch("http://localhost:3000/palaces", options)
+    fetch('http://localhost:3000/palaces', options)
     .then(jsonToJS)
     .then(palace => function(){
+      // never hits this!!!
+      debugger
       let newPalace = new Palace(palace)
       newPalace.appendPalace()
+      // add catch?
     })
   }
 

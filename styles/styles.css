@@ -44,6 +44,7 @@ body{
   width: 65%;
   height: 75%;
   float: right;
+
 }
 
 .block{
@@ -71,4 +72,15 @@ ul{
 
 .btn1{
   float: left;
+}
+
+.add{
+  background-color: plum;
+}
+
+h1{
+  color: yellow
+}
+.lociLabel{
+  color: yellow
 }
