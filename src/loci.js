@@ -88,6 +88,7 @@ class Loci{
       })
   }
   // ADD METHOD HERE
+  // ADD METHOD HERE
 }
 
 // EVERYTHING ABOVE HERE IS CLASS

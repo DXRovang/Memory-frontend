@@ -10,16 +10,18 @@ class Palace{
     const palaceDiv = document.getElementById("Title")
     const ul = document.createElement("ul")
     const div = document.createElement("div")
-    ul.append(div)
+
     const button = document.createElement("button")
-    const br = document.createElement("br")
     button.innerHTML = "See Me"
     button.addEventListener("click", (e) => renderShow(this))
+
     div.innerHTML = this.name
     let ulId = div.innerText
+
     ul.setAttribute("id", ulId)
-    ul.append(br, button)
+    ul.append(div, button)
     palaceDiv.append(ul)
+
     Loci.appendLocis(this, palaceDiv)
   }
   static fetchPalaces(){
@@ -60,35 +62,28 @@ class Palace{
         // add catch?
       })
     }
-
-  // ADD NEW METHOD HERE
+  // ADD renderShow HERE
 }
 
-// EVERYTHING ABOVE HERE IS PALACE CLASS
-
 function renderShow(palace){
-  const page = document.getElementById("Palace")
-  const title = document.getElementById("Title")
-
   let ulId = palace.name
 
-  const page2 = page
-  const title2 = title
-
-  title.innerHTML = ""
-  page.children[0].remove()
+  // gets rid of current HTML
   const palaceDiv = document.getElementById("Title")
+  const page = document.getElementById("Palace")
+  palaceDiv.innerHTML = ""
+  page.children[0].remove()
+  // creates new HTML
   const ul = document.createElement("ul")
   const div = document.createElement("div")
-  
   const button = document.createElement("button")
   button.innerHTML = "go back"
-  page.append(button)
-
+  
   ul.append(div)
   ul.setAttribute("id", ulId)
   div.innerHTML = palace.name
-  palaceDiv.append(ul)
+
+  palaceDiv.append(ul, button)
   Loci.appendLocis(palace, palaceDiv)
   appendLocisForm()
 }
