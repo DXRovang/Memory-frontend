@@ -18,10 +18,8 @@ class Palace{
     div.innerHTML = this.name
     let ulId = div.innerText
     ul.setAttribute("id", ulId)
-    // debugger
     ul.append(br, button)
     palaceDiv.append(ul)
-    ///// above stays same
     Loci.appendLocis(this, palaceDiv)
   }
   static fetchPalaces(){
@@ -33,7 +31,6 @@ class Palace{
   // find a DOM element and attach to it
   static appendPalaces(palaces){
     for (let palace of palaces){
-      // need to create a frontend obj
       let newPalace = new Palace(palace)
       newPalace.appendPalace()
     }
@@ -70,10 +67,9 @@ class Palace{
 // EVERYTHING ABOVE HERE IS PALACE CLASS
 
 function renderShow(palace){
-// debugger
   const page = document.getElementById("Palace")
   const title = document.getElementById("Title")
-  // debugger
+
   let ulId = palace.name
 
   const page2 = page
@@ -84,18 +80,10 @@ function renderShow(palace){
   const palaceDiv = document.getElementById("Title")
   const ul = document.createElement("ul")
   const div = document.createElement("div")
-  // NOPE
-  // div.setAttribute("id", `${palaceDiv.innerText}`)
   
   const button = document.createElement("button")
   button.innerHTML = "go back"
   page.append(button)
-
-  // not working
-  // button.addEventListener("click", (e) => {
-  //     title.innerHTML = title2.innerHTML
-  //     page.children[0] = page2.children[0]
-  // })
 
   ul.append(div)
   ul.setAttribute("id", ulId)

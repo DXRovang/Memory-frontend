@@ -33,6 +33,9 @@ class Loci{
     for(let i = 0; i < palace.locis.length; i++){
       let ul = document.getElementById(palace.name)
       let li = document.createElement("li")
+      let liID = palace.locis[i].id
+
+      li.setAttribute("id", liID)
 
       let div = document.createElement("div")
       div.innerHTML = palace.locis[i].name
@@ -53,7 +56,6 @@ class Loci{
       button.addEventListener("click", (e) => {
         deleteLoci(loci)
       })
-// debugger - this is the problem spot
       ul.append(li)
     }
   }
@@ -61,8 +63,7 @@ class Loci{
     e.preventDefault()
     const userInput = e.target.children[1].value
     const itemInput = e.target.children[4].value
-    // debugger
-    // need to associate the palace id or palace name here
+
     const palaceName = document.getElementsByTagName("div")[3].innerText
     const options = {
       method: "POST", 
@@ -92,7 +93,19 @@ class Loci{
 // EVERYTHING ABOVE HERE IS CLASS
 
 function deleteLoci(loci){
+ 
+  let lociID = loci.id
   fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})
+  .then(jsonToJS)
+  .then(resp => {
+
+    const page = document.getElementById(lociID).children
+    // INTERESTING!!!!
+    // removing-htmlcollection-elements-from-the-dom
+    for (var i = page.length - 1; i >= 0; --i) {
+      page[i].remove();
+    }
+  })
 }
 
 function appendLocisForm(){
