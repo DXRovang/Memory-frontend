@@ -9,23 +9,23 @@ class Palace{
   appendPalace(){
     const palaceDiv = document.getElementById("Title")
     const ul = document.createElement("ul")
-    
-    // separate this out into an appendButton function?
-    // unfortunately it can't move from this spot
+    const div = document.createElement("div")
+    ul.append(div)
     const button = document.createElement("button")
     const br = document.createElement("br")
     button.innerHTML = "See Me"
     button.addEventListener("click", (e) => renderShow(this))
-
-    ul.innerHTML = this.name
+    div.innerHTML = this.name
+    let ulId = div.innerText
+    ul.setAttribute("id", ulId)
+    // debugger
     ul.append(br, button)
     palaceDiv.append(ul)
+    ///// above stays same
     Loci.appendLocis(this, palaceDiv)
   }
-  // static are like class methods in ruby
   static fetchPalaces(){
     fetch('http://localhost:3000/palaces')
-    // converts response from from json into js, no return necessary if no curly brackets
     .then(jsonToJS)
     // since we define this function below, we can just ref it
     .then(this.appendPalaces)
@@ -39,7 +39,6 @@ class Palace{
     }
   }
   static postPalace(e){
-    // debugger
     e.preventDefault()
     // why didn't e.target.children[1].value work here?
     const userInput = document.getElementById("palaceName").value
@@ -71,23 +70,36 @@ class Palace{
 // EVERYTHING ABOVE HERE IS PALACE CLASS
 
 function renderShow(palace){
+// debugger
   const page = document.getElementById("Palace")
   const title = document.getElementById("Title")
+  // debugger
+  let ulId = palace.name
+
+  const page2 = page
+  const title2 = title
+
   title.innerHTML = ""
   page.children[0].remove()
-
   const palaceDiv = document.getElementById("Title")
   const ul = document.createElement("ul")
+  const div = document.createElement("div")
+  // NOPE
+  // div.setAttribute("id", `${palaceDiv.innerText}`)
+  
+  const button = document.createElement("button")
+  button.innerHTML = "go back"
+  page.append(button)
 
-  // const button = document.createElement("button")
-  // const br = document.createElement("br")
-  // button.innerHTML = "go back"
-  // not working, also don't attach to Palace Name
-  // button.addEventListener("click", (e) => console.log("hello"))
+  // not working
+  // button.addEventListener("click", (e) => {
+  //     title.innerHTML = title2.innerHTML
+  //     page.children[0] = page2.children[0]
+  // })
 
-  ul.innerHTML = palace.name
-  // ul.append(br)
-  // ul.append(button)
+  ul.append(div)
+  ul.setAttribute("id", ulId)
+  div.innerHTML = palace.name
   palaceDiv.append(ul)
   Loci.appendLocis(palace, palaceDiv)
   appendLocisForm()

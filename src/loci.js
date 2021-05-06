@@ -3,38 +3,67 @@ class Loci{
     this.name = loci.name
     this.id = loci.id
     this.item = loci.item
-    this.palace_id = loci.palace_id
+    this.palace_id = loci.palace.id
   }
   appendLoci(){
-    // const ul = document.getElementsByTagName('ul')
     const ul = document.createElement("ul")
     const li = document.createElement("li")
     li.innerHTML = this.name
-    // this is a problem
     ul.append(li) 
+  }
+
+  appendNewLoci(){
+    const ul = document.getElementsByTagName("ul")[0]
+    const li = document.createElement("li")
+
+    const div = document.createElement("div")
+    div.innerHTML = this.name
+    div.setAttribute("class", "loci")
+    li.append(div)
+
+    const div2 = document.createElement("div")
+    div2.innerHTML = this.item
+    div2.setAttribute("class", "item")
+    li.append(div2)
+
+    ul.append(li)
+
   }
   static appendLocis(palace, palaceDiv){
     for(let i = 0; i < palace.locis.length; i++){
-      const li = document.createElement("li")
-      li.setAttribute("class", "loci")
-      li.innerHTML = palace.locis[i].name
-      const button = document.createElement("button")
-      button.innerHTML = "x"
+      let ul = document.getElementById(palace.name)
+      let li = document.createElement("li")
+
+      let div = document.createElement("div")
+      div.innerHTML = palace.locis[i].name
+      div.setAttribute("class", "loci")
+      li.append(div)
+
+      let div2 = document.createElement("div")
+      div2.innerHTML = palace.locis[i].item
+      div2.setAttribute("class", "item")
+      li.append(div2)
+
+      let button = document.createElement("button")
       button.setAttribute("class", "btn1 delete")
+      button.innerHTML = "x"
       li.append(button)
-      const loci = palace.locis[i]
+
+      let loci = palace.locis[i]
       button.addEventListener("click", (e) => {
         deleteLoci(loci)
       })
-      palaceDiv.append(li)
-      appendItem(i, palace, palaceDiv)
+// debugger - this is the problem spot
+      ul.append(li)
     }
   }
   static addLoci(e){
     e.preventDefault()
     const userInput = e.target.children[1].value
     const itemInput = e.target.children[4].value
-    const palaceName = document.getElementsByTagName('ul')[0].innerText
+    // debugger
+    // need to associate the palace id or palace name here
+    const palaceName = document.getElementsByTagName("div")[3].innerText
     const options = {
       method: "POST", 
       headers: {
@@ -54,8 +83,7 @@ class Loci{
       .then(jsonToJS)
       .then(loci => {
         let newLoci = new Loci(loci)
-        newLoci.appendLoci()
-        // Palace.fetchPalaces()
+        newLoci.appendNewLoci()
       })
   }
   // ADD METHOD HERE

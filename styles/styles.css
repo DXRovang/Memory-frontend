@@ -1,9 +1,9 @@
 body{
-  background-color: rgb(201, 165, 120);
+  background-color: rgb(94, 96, 214);
 }
 
 #Title{
-  background-color: hotpink;
+  background-color: rgb(126, 22, 74);
   float: left;
   clear: both;
   padding: 5px;
@@ -15,7 +15,18 @@ body{
   border-color: lightskyblue;
 }
 
+ul li{
+  list-style-type: none;
+}
+
+ul{
+  float: right;
+  padding-right: 5px;
+  color: yellow;
+}
+
 .loci{
+  color: black;
   float:left;
   clear: left;
   background-color: orange;
@@ -25,6 +36,7 @@ body{
   margin: 5px;
 }
 .item{
+  color: black;
   float:left;
   width: 100px;
   background-color: greenyellow;
@@ -44,7 +56,6 @@ body{
   width: 65%;
   height: 75%;
   float: right;
-
 }
 
 .block{
@@ -62,9 +73,6 @@ body{
   float: left;
 }
 
-ul{
-  padding-right: 5px;
-}
 
 .btn{
   float: right;
