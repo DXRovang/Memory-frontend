@@ -1,11 +1,5 @@
 function loadRoom(){
   const rc = document.getElementById("RightContainer")
-  let button = document.createElement("button")
-  button.innerHTML = "save"
-  rc.append(button)
-  button.addEventListener("click", (e) => {
-    addMap()
-  })
 
   for(let j=0; j< 20; j++){
     const tr = document.createElement("tr")
@@ -27,11 +21,10 @@ function changeColor(tdObj){
   tdObj.classList.toggle("secondColor")
 }
 
-function addMap(){
+function saveMap(){
   console.log("clicked!")
   let palaceMap = document.getElementsByClassName("secondColor")
   let palaceName = document.getElementsByTagName("ul")[0].id
-  // debugger
   // const options = {
 //   method: "PATCH", 
 //   headers: {
@@ -50,8 +43,12 @@ function addMap(){
 // .then()
 }
 
+function restoreMap(){
+
+}
 
 // does the array need to be in the DB?
 // if yes, fetch PATCH to palace
+// how can we see the JS object?
 // push the map into the array (on the FrontEnd or the Backend?)
 // note:  this button should only be availabe on the show page

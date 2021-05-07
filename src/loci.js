@@ -53,10 +53,11 @@ class Loci{
 
       let loci = palace.locis[i]
       button.addEventListener("click", (e) => {
-        deleteLoci(loci)
+        deleteLoci(loci, palace)
       })
       ul.append(li)
     }
+   
   }
   static addLoci(e){
     e.preventDefault()
@@ -86,19 +87,42 @@ class Loci{
         newLoci.appendNewLoci()
       })
   }
-  // ADD METHOD HERE
+
+  // appendLocisForm(){
+  //   let lc = document.getElementById("LeftContainer")
+  //   let locisForm = `
+  //   <div id="LociItem">
+  //     <form id="locisForm">
+  //     <label class="lociLabel">Loci</label>
+  //     <input id="lociInput"/><br>
+  //     <label class="lociLabel">Item</label>
+  //     <input id="itemInput"/><br>
+  //     <input type="submit" value="add loci"/>
+  //     </form>
+  //     </div>
+  //     `
+  //   lc.innerHTML += locisForm
+  //   document.getElementById("locisForm").addEventListener("submit", Loci.addLoci)
+  // }
+  
 }
 
 // EVERYTHING ABOVE HERE IS CLASS
 
-function deleteLoci(loci){
+function deleteLoci(loci, palace){
+  // debugger
   let lociID = loci.id
   fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})
   .then(jsonToJS)
   .then(resp => {
+     console.log(palace)
+    // not doing anything with this response...
     let page = document.getElementById(lociID).children
+    // debugger
+    // use filter to re-assign palace.loci to filtered version
+    // update frontend Palace Loci
     // INTERESTING!!!!
-    // removing-htmlcollection-elements-from-the-dom
+    // stackoverflow: removing-htmlcollection-elements-from-the-dom
     for (let i = page.length - 1; i >= 0; --i) {
       page[i].remove();
     }
@@ -118,7 +142,6 @@ function appendLocisForm(){
     </form>
     </div>
     `
-  // note:  innerHTML recognizes the HMTL form elements
   lc.innerHTML += locisForm
   document.getElementById("locisForm").addEventListener("submit", Loci.addLoci)
 }

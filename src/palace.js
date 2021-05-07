@@ -8,13 +8,16 @@ class Palace{
     this.palaceMap = []
   }
   appendPalace(){
+  debugger
     let palaceDiv = document.getElementById("Title")
     let ul = document.createElement("ul")
     let div = document.createElement("div")
 
     let button = document.createElement("button")
     button.innerHTML = "See Me"
-    button.addEventListener("click", (e) => renderShow(this))
+    button.addEventListener("click", (e) => {
+      // debugger
+      renderShow(this)})
 
     div.innerHTML = this.name
     let ulId = div.innerText
@@ -22,10 +25,10 @@ class Palace{
     ul.setAttribute("id", ulId)
     ul.append(div, button)
     palaceDiv.append(ul)
-
     Loci.appendLocis(this, palaceDiv)
   }
   static fetchPalaces(){
+    // debugger
     fetch('http://localhost:3000/palaces')
     .then(jsonToJS)
     // since we define this function below, we can just ref it
@@ -63,36 +66,131 @@ class Palace{
         // add catch?
       })
     }
-  // ADD renderShow HERE
+
+    // renderShow(palace){ 
+
+    //   let ulId = palace.name
+    
+    //   let palaceDiv = document.getElementById("Title")
+    //   let page = document.getElementById("Palace")
+    //   palaceDiv.innerText = ""
+    //   // page.children[0] is the PalaceForm
+    //   page.children[0].remove()
+    
+    //   let ul = document.createElement("ul")
+    //   let div = document.createElement("div")
+    
+    //   let button = document.createElement("button")
+    //   button.innerText = "go back"
+    
+    //   button.addEventListener("click", (e) => {
+    //     console.log("go back")
+    
+    //     let LociItem = document.getElementById("LociItem")
+    //     LociItem.children[0].remove()
+    
+    //     let newPalaceDiv = document.getElementById("Title")
+    //     newPalaceDiv.innerHTML = ""
+    
+    //     let newPage = document.getElementById("Palace")
+    //     newPage.innerHTML = `
+    //     <form id="PalaceForm">
+    //     <h1><label>Create Your Palace</label></h1>
+    //     <div><input type="text" id="palaceName">
+    //     <input type="submit" value="submit"></div>
+    //   </form>
+    //   <div id="LeftContainer">
+    //   <div id="Title"></div>
+    //   </div>`
+    
+    //     PalaceForm.addEventListener('submit', (e) => {
+    //       Palace.postPalace(e)
+    //      })
+    //     Palace.fetchPalaces()
+    //   })
+    
+    //   let button2 = document.createElement("button")
+    //   button2.innerText = "save map"
+    //   button2.addEventListener("click", (e) => {
+    //     console.log("save map")
+    //     saveMap()
+    //   })
+      
+    //   ul.append(div)
+    //   ul.setAttribute("id", ulId)
+    
+    //   div.innerText = palace.name
+    
+    //   palaceDiv.append(ul)
+    //   page.append(button, button2)
+    
+    //   Loci.appendLocis(palace, palaceDiv)
+    //   appendLocisForm()
+    
+    // }
+    
 }
 
 function renderShow(palace){ 
-  // debugger
+
   let ulId = palace.name
-  // gets rid of current HTML
+
   let palaceDiv = document.getElementById("Title")
   let page = document.getElementById("Palace")
-  palaceDiv.innerHTML = ""
+  palaceDiv.innerText = ""
+  // page.children[0] is the PalaceForm
   page.children[0].remove()
-  // creates new HTML
+
   let ul = document.createElement("ul")
   let div = document.createElement("div")
+
   let button = document.createElement("button")
-  button.innerHTML = "go back"
-  // debugger
-  // not working, why?
+  button.innerText = "go back"
+
   button.addEventListener("click", (e) => {
-    console.log("hello")
+    console.log("go back")
+
+    let LociItem = document.getElementById("LociItem")
+    LociItem.children[0].remove()
+
+    let newPalaceDiv = document.getElementById("Title")
+    newPalaceDiv.innerHTML = ""
+
+    let newPage = document.getElementById("Palace")
+    newPage.innerHTML = `
+    <form id="PalaceForm">
+    <h1><label>Create Your Palace</label></h1>
+    <div><input type="text" id="palaceName">
+    <input type="submit" value="submit"></div>
+  </form>
+  <div id="LeftContainer">
+  <div id="Title"></div>
+  </div>`
+
+    PalaceForm.addEventListener('submit', (e) => {
+      Palace.postPalace(e)
+     })
     Palace.fetchPalaces()
+  })
+
+  let button2 = document.createElement("button")
+  button2.innerText = "save map"
+  button2.addEventListener("click", (e) => {
+    console.log("save map")
+    saveMap()
   })
   
   ul.append(div)
   ul.setAttribute("id", ulId)
-  div.innerHTML = palace.name
 
-  palaceDiv.append(ul, button)
+  div.innerText = palace.name
+
+  palaceDiv.append(ul)
+  page.append(button, button2)
+
   Loci.appendLocis(palace, palaceDiv)
   appendLocisForm()
+
 }
 
 
