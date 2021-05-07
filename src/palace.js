@@ -5,13 +5,14 @@ class Palace{
     this.name = palace.name
     this.id = palace.id
     this.locis = palace.locis
+    this.palaceMap = []
   }
   appendPalace(){
-    const palaceDiv = document.getElementById("Title")
-    const ul = document.createElement("ul")
-    const div = document.createElement("div")
+    let palaceDiv = document.getElementById("Title")
+    let ul = document.createElement("ul")
+    let div = document.createElement("div")
 
-    const button = document.createElement("button")
+    let button = document.createElement("button")
     button.innerHTML = "See Me"
     button.addEventListener("click", (e) => renderShow(this))
 
@@ -40,7 +41,7 @@ class Palace{
   static postPalace(e){
     e.preventDefault()
     // why didn't e.target.children[1].value work here?
-    const userInput = document.getElementById("palaceName").value
+    let userInput = document.getElementById("palaceName").value
     const options = {
       method: "POST", 
       headers: {
@@ -65,19 +66,25 @@ class Palace{
   // ADD renderShow HERE
 }
 
-function renderShow(palace){
+function renderShow(palace){ 
+  // debugger
   let ulId = palace.name
-
   // gets rid of current HTML
-  const palaceDiv = document.getElementById("Title")
-  const page = document.getElementById("Palace")
+  let palaceDiv = document.getElementById("Title")
+  let page = document.getElementById("Palace")
   palaceDiv.innerHTML = ""
   page.children[0].remove()
   // creates new HTML
-  const ul = document.createElement("ul")
-  const div = document.createElement("div")
-  const button = document.createElement("button")
+  let ul = document.createElement("ul")
+  let div = document.createElement("div")
+  let button = document.createElement("button")
   button.innerHTML = "go back"
+  // debugger
+  // not working, why?
+  button.addEventListener("click", (e) => {
+    console.log("hello")
+    Palace.fetchPalaces()
+  })
   
   ul.append(div)
   ul.setAttribute("id", ulId)

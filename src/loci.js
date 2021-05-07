@@ -6,22 +6,21 @@ class Loci{
     this.palace_id = loci.palace.id
   }
   appendLoci(){
-    const ul = document.createElement("ul")
-    const li = document.createElement("li")
+    let ul = document.createElement("ul")
+    let li = document.createElement("li")
     li.innerHTML = this.name
     ul.append(li) 
   }
-
   appendNewLoci(){
-    const ul = document.getElementsByTagName("ul")[0]
-    const li = document.createElement("li")
+    let ul = document.getElementsByTagName("ul")[0]
+    let li = document.createElement("li")
 
-    const div = document.createElement("div")
+    let div = document.createElement("div")
     div.innerHTML = this.name
     div.setAttribute("class", "loci")
     li.append(div)
 
-    const div2 = document.createElement("div")
+    let div2 = document.createElement("div")
     div2.innerHTML = this.item
     div2.setAttribute("class", "item")
     li.append(div2)
@@ -61,10 +60,10 @@ class Loci{
   }
   static addLoci(e){
     e.preventDefault()
-    const userInput = e.target.children[1].value
-    const itemInput = e.target.children[4].value
+    let userInput = e.target.children[1].value
+    let itemInput = e.target.children[4].value
 
-    const palaceName = document.getElementsByTagName("div")[3].innerText
+    let palaceName = document.getElementsByTagName("div")[3].innerText
     const options = {
       method: "POST", 
       headers: {
@@ -88,30 +87,27 @@ class Loci{
       })
   }
   // ADD METHOD HERE
-  // ADD METHOD HERE
 }
 
 // EVERYTHING ABOVE HERE IS CLASS
 
 function deleteLoci(loci){
- 
   let lociID = loci.id
   fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})
   .then(jsonToJS)
   .then(resp => {
-
-    const page = document.getElementById(lociID).children
+    let page = document.getElementById(lociID).children
     // INTERESTING!!!!
     // removing-htmlcollection-elements-from-the-dom
-    for (var i = page.length - 1; i >= 0; --i) {
+    for (let i = page.length - 1; i >= 0; --i) {
       page[i].remove();
     }
   })
 }
 
 function appendLocisForm(){
-  const lc = document.getElementById("LeftContainer")
-  const locisForm = `
+  let lc = document.getElementById("LeftContainer")
+  let locisForm = `
   <div id="LociItem">
     <form id="locisForm">
     <label class="lociLabel">Loci</label>
