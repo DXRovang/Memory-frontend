@@ -15,7 +15,11 @@ class Palace{
     let button = document.createElement("button")
     button.innerHTML = "See Me"
     button.addEventListener("click", (e) => {
+      // debugger
       this.renderShow()})
+
+    div.addEventListener("click", (e) => {
+      this.deletePalace()})
 
     div.innerHTML = this.name
     let ulId = div.innerText
@@ -55,13 +59,14 @@ class Palace{
       fetch('http://localhost:3000/palaces', options)
       .then(jsonToJS)
       .then(palace => {
-        let newPalace = new Palace(palace)
-        newPalace.appendPalace()
+        if(palace.error === undefined){
+          let newPalace = new Palace(palace)
+          newPalace.appendPalace()
+        }
       })
     }
 
     renderShow(){ 
-
       let ulId = this.name
     
       let palaceDiv = document.getElementById("Title")
@@ -121,6 +126,17 @@ class Palace{
       Loci.appendLocisForm()
     
     }
+
+    deletePalace(){
+      fetch(`http://localhost:3000/palaces/${this.id}`, {method: "DELETE"})
+      .then(jsonToJS)
+      .then(resp => {
+        let respName = resp.name
+        let frontEndPalace = document.getElementById(respName)
+        frontEndPalace.remove()
+      })
+    }
+
     deleteLoci(loci){
       let lociID = loci.id
       fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})
