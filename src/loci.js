@@ -27,6 +27,14 @@ class Loci{
 
     ul.append(li)
 
+    let button = document.createElement("button")
+    button.setAttribute("class", "btn1 delete")
+    button.innerHTML = "x"
+    li.append(button)
+    // button.addEventListener("click", (e) => {
+    //   palace.deleteLoci(loci)
+    // })
+
   }
   static appendLocis(palace, palaceDiv){
     for(let i = 0; i < palace.locis.length; i++){
@@ -53,7 +61,7 @@ class Loci{
 
       let loci = palace.locis[i]
       button.addEventListener("click", (e) => {
-        deleteLoci(loci, palace)
+        palace.deleteLoci(loci)
       })
       ul.append(li)
     }
@@ -88,62 +96,27 @@ class Loci{
       })
   }
 
-  // appendLocisForm(){
-  //   let lc = document.getElementById("LeftContainer")
-  //   let locisForm = `
-  //   <div id="LociItem">
-  //     <form id="locisForm">
-  //     <label class="lociLabel">Loci</label>
-  //     <input id="lociInput"/><br>
-  //     <label class="lociLabel">Item</label>
-  //     <input id="itemInput"/><br>
-  //     <input type="submit" value="add loci"/>
-  //     </form>
-  //     </div>
-  //     `
-  //   lc.innerHTML += locisForm
-  //   document.getElementById("locisForm").addEventListener("submit", Loci.addLoci)
-  // }
+  static appendLocisForm(){
+    let lc = document.getElementById("LeftContainer")
+    let locisForm = `
+    <div id="LociItem">
+      <form id="locisForm">
+      <label class="lociLabel">Loci</label>
+      <input id="lociInput"/><br>
+      <label class="lociLabel">Item</label>
+      <input id="itemInput"/><br>
+      <input type="submit" value="add loci"/>
+      </form>
+      </div>
+      `
+    lc.innerHTML += locisForm
+    document.getElementById("locisForm").addEventListener("submit", Loci.addLoci)
+  }
   
 }
 
-// EVERYTHING ABOVE HERE IS CLASS
 
-function deleteLoci(loci, palace){
-  // debugger
-  let lociID = loci.id
-  fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})
-  .then(jsonToJS)
-  .then(resp => {
-     console.log(palace)
-    // not doing anything with this response...
-    let page = document.getElementById(lociID).children
-    // debugger
-    // use filter to re-assign palace.loci to filtered version
-    // update frontend Palace Loci
-    // INTERESTING!!!!
-    // stackoverflow: removing-htmlcollection-elements-from-the-dom
-    for (let i = page.length - 1; i >= 0; --i) {
-      page[i].remove();
-    }
-  })
-}
 
-function appendLocisForm(){
-  let lc = document.getElementById("LeftContainer")
-  let locisForm = `
-  <div id="LociItem">
-    <form id="locisForm">
-    <label class="lociLabel">Loci</label>
-    <input id="lociInput"/><br>
-    <label class="lociLabel">Item</label>
-    <input id="itemInput"/><br>
-    <input type="submit" value="add loci"/>
-    </form>
-    </div>
-    `
-  lc.innerHTML += locisForm
-  document.getElementById("locisForm").addEventListener("submit", Loci.addLoci)
-}
+
 
 
