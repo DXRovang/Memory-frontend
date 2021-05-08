@@ -15,7 +15,6 @@ class Palace{
     let button = document.createElement("button")
     button.innerHTML = "See Me"
     button.addEventListener("click", (e) => {
-      // debugger
       this.renderShow()})
 
     div.addEventListener("click", (e) => {
@@ -68,13 +67,13 @@ class Palace{
 
     renderShow(){ 
       let ulId = this.name
-    
+      // clears out Index DOM
       let palaceDiv = document.getElementById("Title")
       let page = document.getElementById("Palace")
       palaceDiv.innerText = ""
       // page.children[0] is the PalaceForm
       page.children[0].remove()
-    
+      // creates new Show DOM
       let ul = document.createElement("ul")
       let div = document.createElement("div")
     
@@ -82,26 +81,25 @@ class Palace{
       button.innerText = "go back"
     
       button.addEventListener("click", (e) => {
-        console.log("go back")
-    
+        // clears out Show DOM
         let LociItem = document.getElementById("LociItem")
         LociItem.children[0].remove()
     
         let newPalaceDiv = document.getElementById("Title")
         newPalaceDiv.innerHTML = ""
-    
+        // reCreates Index DOM
         let newPage = document.getElementById("Palace")
         newPage.innerHTML = `
-        <form id="PalaceForm">
-        <h1><label>Create Your Palace</label></h1>
-        <div><input type="text" id="palaceName">
-        <input type="submit" value="submit"></div>
-      </form>
-      <div id="LeftContainer">
-      <div id="Title"></div>
-      </div>`
-    
-        PalaceForm.addEventListener('submit', (e) => {
+          <form id="PalaceForm">
+            <h1><label>Create Your Palace</label></h1>
+            <div><input type="text" id="palaceName">
+            <input type="submit" value="submit"></div>
+          </form>
+          <div id="LeftContainer">
+          <div id="Title"></div>
+          </div>`
+        const PalaceForm2 = document.getElementById("PalaceForm")
+        PalaceForm2.addEventListener('submit', (e) => {
           Palace.postPalace(e)
          })
         Palace.fetchPalaces()
