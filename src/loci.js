@@ -87,15 +87,15 @@ class Loci{
           }
         })
       }
-      e.target.reset()
-      fetch('http://localhost:3000/locis', options)
-      .then(jsonToJS)
-      .then(loci => {
-        let newLoci = new Loci(loci)
-        newLoci.appendNewLoci()
-      })
+    e.target.reset()
+    fetch('http://localhost:3000/locis', options)
+    .then(jsonToJS)
+    .then(loci => {
+      let newLoci = new Loci(loci)
+      newLoci.appendNewLoci()
+    })
+    .catch((error) => console.log("There was an error: ", error))
   }
-
   static appendLocisForm(){
     let lc = document.getElementById("LeftContainer")
     let locisForm = `
@@ -111,8 +111,7 @@ class Loci{
       `
     lc.innerHTML += locisForm
     document.getElementById("locisForm").addEventListener("submit", Loci.addLoci)
-  }
-  
+  }  
 }
 
 

@@ -3,7 +3,6 @@
  loadRoom()
 
  PalaceForm.addEventListener('submit', (e) => {
-   debugger
   Palace.postPalace(e)
  })
  

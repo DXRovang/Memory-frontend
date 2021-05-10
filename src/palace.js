@@ -32,6 +32,7 @@ class Palace{
     fetch('http://localhost:3000/palaces')
     .then(jsonToJS)
     .then(this.appendPalaces)
+    .catch((error) => console.log("There was an error: ", error))
   }
   static appendPalaces(palaces){
     for (let palace of palaces){
@@ -58,13 +59,11 @@ class Palace{
       fetch('http://localhost:3000/palaces', options)
       .then(jsonToJS)
       .then(palace => {
-        if(palace.error === undefined){
-          let newPalace = new Palace(palace)
-          newPalace.appendPalace()
-        }
+        let newPalace = new Palace(palace)
+        newPalace.appendPalace()
       })
+      .catch((error) => console.log("There was an error: ", error))
     }
-
     renderShow(){ 
       let ulId = this.name
       // clears out Index DOM
@@ -79,7 +78,8 @@ class Palace{
     
       let button = document.createElement("button")
       button.innerText = "go back"
-    
+
+      // I feel like this button could be refactored
       button.addEventListener("click", (e) => {
         // clears out Show DOM
         let LociItem = document.getElementById("LociItem")
@@ -101,10 +101,10 @@ class Palace{
         const PalaceForm2 = document.getElementById("PalaceForm")
         PalaceForm2.addEventListener('submit', (e) => {
           Palace.postPalace(e)
-         })
-        Palace.fetchPalaces()
-      })
-    
+          })
+          Palace.fetchPalaces()
+        })
+
       let button2 = document.createElement("button")
       button2.innerText = "save map"
       button2.addEventListener("click", (e) => {
@@ -122,9 +122,7 @@ class Palace{
     
       Loci.appendLocis(this, palaceDiv)
       Loci.appendLocisForm()
-    
     }
-
     deletePalace(){
       fetch(`http://localhost:3000/palaces/${this.id}`, {method: "DELETE"})
       .then(jsonToJS)
@@ -133,8 +131,8 @@ class Palace{
         let frontEndPalace = document.getElementById(respName)
         frontEndPalace.remove()
       })
+      .catch((error) => console.log("There was an error: ", error))
     }
-
     deleteLoci(loci){
       let lociID = loci.id
       fetch(`http://localhost:3000/locis/${loci.id}`, {method: "DELETE"})
@@ -144,6 +142,7 @@ class Palace{
         let page = document.getElementById(lociID)
         page.remove()
       })
+      .catch((error) => console.log("There was an error: ", error))
     } 
 }
 
