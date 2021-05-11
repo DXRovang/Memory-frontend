@@ -7,6 +7,19 @@ class Palace{
     this.locis = palace.locis
     this.palaceMap = []
   }
+
+  static fetchPalaces(){
+    fetch('http://localhost:3000/palaces')
+    .then(jsonToJS)
+    .then(this.appendPalaces)
+    .catch((error) => console.log("There was an error: ", error))
+  }
+  static appendPalaces(palaces){
+    for (let palace of palaces){
+      let newPalace = new Palace(palace)
+      newPalace.appendPalace()
+    }
+  }
   appendPalace(){
     let palaceDiv = document.getElementById("Title")
     let ul = document.createElement("ul")
@@ -21,24 +34,13 @@ class Palace{
       this.deletePalace()})
 
     div.innerHTML = this.name
-    let ulId = div.innerText
+    // let ulId = div.innerText
+    let ulId = this.id
 
     ul.setAttribute("id", ulId)
     ul.append(div, button)
     palaceDiv.append(ul)
     Loci.appendLocis(this, palaceDiv)
-  }
-  static fetchPalaces(){
-    fetch('http://localhost:3000/palaces')
-    .then(jsonToJS)
-    .then(this.appendPalaces)
-    .catch((error) => console.log("There was an error: ", error))
-  }
-  static appendPalaces(palaces){
-    for (let palace of palaces){
-      let newPalace = new Palace(palace)
-      newPalace.appendPalace()
-    }
   }
   static postPalace(e){
     e.preventDefault()
@@ -65,7 +67,8 @@ class Palace{
       .catch((error) => console.log("There was an error: ", error))
     }
     renderShow(){ 
-      let ulId = this.name
+
+      let ulId = this.id
       // clears out Index DOM
       let palaceDiv = document.getElementById("Title")
       let page = document.getElementById("Palace")
@@ -89,6 +92,7 @@ class Palace{
         newPalaceDiv.innerHTML = ""
         // reCreates Index DOM
         let newPage = document.getElementById("Palace")
+      
         newPage.innerHTML = `
           <form id="PalaceForm">
             <h1><label>Create Your Palace</label></h1>
@@ -98,11 +102,12 @@ class Palace{
           <div id="LeftContainer">
           <div id="Title"></div>
           </div>`
+
         const PalaceForm2 = document.getElementById("PalaceForm")
         PalaceForm2.addEventListener('submit', (e) => {
           Palace.postPalace(e)
           })
-          Palace.fetchPalaces()
+        Palace.fetchPalaces()
         })
 
       let button2 = document.createElement("button")
@@ -114,9 +119,9 @@ class Palace{
       
       ul.append(div)
       ul.setAttribute("id", ulId)
-    
+
       div.innerText = this.name
-    
+
       palaceDiv.append(ul)
       page.append(button, button2)
     
@@ -127,8 +132,8 @@ class Palace{
       fetch(`http://localhost:3000/palaces/${this.id}`, {method: "DELETE"})
       .then(jsonToJS)
       .then(resp => {
-        let respName = resp.name
-        let frontEndPalace = document.getElementById(respName)
+        let respID = resp.id
+        let frontEndPalace = document.getElementById(respID)
         frontEndPalace.remove()
       })
       .catch((error) => console.log("There was an error: ", error))

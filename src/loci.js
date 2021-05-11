@@ -38,12 +38,12 @@ class Loci{
   }
   static appendLocis(palace, palaceDiv){
     for(let i = 0; i < palace.locis.length; i++){
-      let ul = document.getElementById(palace.name)
+      let ul = document.getElementById(palace.id)
       let li = document.createElement("li")
       let liID = palace.locis[i].id
 
       li.setAttribute("id", liID)
-
+// both of these div's should get another class of the palace.id
       let div = document.createElement("div")
       div.innerHTML = palace.locis[i].name
       div.setAttribute("class", "loci")
@@ -58,21 +58,21 @@ class Loci{
       button.setAttribute("class", "btn1 delete")
       button.innerHTML = "x"
       li.append(button)
-
+ 
       let loci = palace.locis[i]
       button.addEventListener("click", (e) => {
         palace.deleteLoci(loci)
       })
       ul.append(li)
+     
     }
-   
   }
-  static addLoci(e){
+  static addLoci(e){ 
     e.preventDefault()
     let userInput = e.target.children[1].value
     let itemInput = e.target.children[4].value
 
-    let palaceName = document.getElementsByTagName("div")[3].innerText
+    let palace_id = document.getElementsByTagName("ul")[0].id
     const options = {
       method: "POST", 
       headers: {
@@ -83,7 +83,7 @@ class Loci{
         loci: {
           name: userInput,
           item: itemInput,
-          palaceName: palaceName
+          palace_id: palace_id
           }
         })
       }
