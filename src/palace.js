@@ -12,7 +12,7 @@ class Palace{
     fetch('http://localhost:3000/palaces')
     .then(jsonToJS)
     .then(this.appendPalaces)
-    .catch((error) => console.log("There was an error: ", error))
+    .catch((error) => alert(`${error}`))
   }
   static appendPalaces(palaces){
     for (let palace of palaces){
@@ -64,7 +64,7 @@ class Palace{
         let newPalace = new Palace(palace)
         newPalace.appendPalace()
       })
-      .catch((error) => console.log("There was an error: ", error))
+      .catch((error) => alert(`${error}`))
     }
     renderShow(){ 
 
@@ -136,7 +136,7 @@ class Palace{
         let frontEndPalace = document.getElementById(respID)
         frontEndPalace.remove()
       })
-      .catch((error) => console.log("There was an error: ", error))
+      .catch((error) => alert(`${error}`))
     }
     deleteLoci(loci){
       let lociID = loci.id
@@ -147,7 +147,7 @@ class Palace{
         let page = document.getElementById(lociID)
         page.remove()
       })
-      .catch((error) => console.log("There was an error: ", error))
+      .catch((error) => alert(`${error}`))
     } 
 }
 

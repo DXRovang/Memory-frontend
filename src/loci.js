@@ -94,7 +94,7 @@ class Loci{
       let newLoci = new Loci(loci)
       newLoci.appendNewLoci()
     })
-    .catch((error) => console.log("There was an error: ", error))
+    .catch((error) => alert(`${error}`))
   }
   static appendLocisForm(){
     let lc = document.getElementById("LeftContainer")
