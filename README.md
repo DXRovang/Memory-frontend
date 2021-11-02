@@ -1,4 +1,4 @@
-# THE MIND PALACE (FRONTEND)
+# THE MIND PALACE (frontend)
 
 A Mind Palace (or "method of loci") is an ancient tool to enhance memory
 using familiar spacial locations.  By visualizing a path through a well-known
@@ -7,8 +7,8 @@ memory, the user could theoretically attach a secondary list of objects to the
 primary list, thereby improving the ability to recall the second (more unfamiliar)
 list.
 
-GitHub links to repositories:
-https://github.com/DXRovang/frontend
+GitHub link to backend:  
+
 https://github.com/DXRovang/backend
 
 
