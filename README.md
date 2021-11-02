@@ -13,9 +13,9 @@ https://github.com/DXRovang/backend
 
 
 This app requires 2 terminals.  
-* After cloning this app from gitHub, open terminal 1 & cd into "backend"
-  a. run "bundle install"
-  b. run "rails s" to start your local server.
+* After cloning this app from gitHub, open terminal 1 & cd into "backend"  
+  a. run "bundle install"  
+  b. run "rails s" to start your local server.  
 * open terminal 2 & cd into "frontend"; run "open index.html"
 
 To explore this app:
