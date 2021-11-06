@@ -99,7 +99,7 @@ class Loci{
   static appendLocisForm(){
     let lc = document.getElementById("LeftContainer")
     let locisForm = `
-    <div class="left"><p>Now list places (Loci) in your palace that never move</p>
+    <div class="left margin"><p>Now list places (Loci) in your palace that never move</p>
           <p>(doorknobs, mirrors, chairs), and items that you would</p>
           <p>like to remember (names, numbers, etc.)</p>
     <div id="LociItem">
