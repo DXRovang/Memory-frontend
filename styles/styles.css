@@ -100,5 +100,7 @@ h1{
 }
 .margin{
   margin-left: 5px;
-
+}
+.view{
+  color: rgb(158, 222, 224);
 }
