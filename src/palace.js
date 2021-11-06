@@ -95,7 +95,7 @@ class Palace{
       
         newPage.innerHTML = `
           <form id="PalaceForm">
-            <h1><label>Create Your Palace</label></h1>
+            <h3><label>Write down the name of a place you know well.</label></h3>
             <div><input type="text" id="palaceName">
             <input type="submit" value="submit"></div>
           </form>
